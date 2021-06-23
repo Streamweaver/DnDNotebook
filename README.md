@@ -4,4 +4,4 @@ Throwing up a simple jupyter notebook for discussion of various numbers and theo
 
 ## Running
 
-This should work in [MyBinder](https://mybinder.org) or your own local Jupyter Notebook if the fancy strikes you.
+This should work in [MyBinder](https://mybinder.org) or your owngit  local Jupyter Notebook if the fancy strikes you.
