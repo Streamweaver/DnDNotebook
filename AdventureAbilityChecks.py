@@ -1,5 +1,5 @@
 from os import write
-import re, csv
+import re, csv, pprint
 from collections import OrderedDict
 
 import numpy as np
@@ -26,7 +26,7 @@ class AdventureParser:
             self.write_skills()
             self.write_saves()
             self.write_save_totals()
-        self.write_skill_check_data()
+            self.write_skill_check_data()
 
 
     def find_skill_checks(self):
@@ -102,8 +102,9 @@ class AdventureParser:
                 writer.writerow([k, len(v)])
 
     def write_skill_check_data(self):
-        skill_set = set([item['Skill'] for item in self.skill_checks])
-        skill_totals = OrderedDict()
+        skill_set = list(set([item['Skill'] for item in self.skill_checks]))
+        skill_set.sort()
+        skill_totals = {}
         for skill in skill_set:
             skill_totals[skill] = [item['DC'] for item in self.skill_checks if item['Skill'] == skill]
         with open('%s%s_skill_totals.csv' % (self.rootdir, self.adventure_name), 'w', newline='') as f:
@@ -115,6 +116,7 @@ class AdventureParser:
 
 if __name__ == "__main__":
     rootdir = "dnd_data/rawmodules/"
-    for adv in ['doip']:
-        AdventureParser(rootdir, adv, write_data=False)
+    for adv in ['rotf']:
+        ap = AdventureParser(rootdir, adv, write_data=True)
+        # pprint.pprint(ap.skill_checks)
     print("Done")
