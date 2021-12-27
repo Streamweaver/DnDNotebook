@@ -26,7 +26,8 @@ class AdventureParser:
             self.write_skills()
             self.write_saves()
             self.write_save_totals()
-            self.write_skill_check_data()
+        self.write_skill_check_data()
+
 
     def find_skill_checks(self):
         text = ""
@@ -109,11 +110,11 @@ class AdventureParser:
             writer = csv.writer(f)
             writer.writerow(['Skill', 'Count', 'Mean'] )
             for skill_label, dc_list in skill_totals.items():
-                writer.writerow([skill_label, len(dc_list), numpy.mean(dc_list)])
+                writer.writerow([skill_label, len(dc_list), np.mean(dc_list)])
 
 
 if __name__ == "__main__":
     rootdir = "dnd_data/rawmodules/"
-    for adv in ['wbtw', 'rotf']:
+    for adv in ['doip']:
         AdventureParser(rootdir, adv, write_data=False)
     print("Done")
